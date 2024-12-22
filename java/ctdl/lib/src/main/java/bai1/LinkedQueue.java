@@ -1,6 +1,8 @@
 package bai1;
 
-public class LinkedQueue<Item> {
+import java.util.Iterator;
+
+public class LinkedQueue<Item> implements Iterable<Item> {
     class Node {
         Item item;
         Node next;
@@ -31,7 +33,7 @@ public class LinkedQueue<Item> {
     }
 
     public Item dequeue() {
-        if(head == null) {
+        if (head == null) {
             return null;
         } else {
             Item res = head.item;
@@ -45,5 +47,27 @@ public class LinkedQueue<Item> {
 
     public Item peek() {
         return head.item;
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new Iterator<Item> () {
+            private Node tmp = head;
+
+            @Override
+            public boolean hasNext() {
+                return tmp != null;
+            }
+
+            @Override
+            public Item next() {
+                if(!hasNext()) {
+                    return null;
+                }
+                Item item = tmp.item;
+                tmp = tmp.next;
+                return item;
+            }
+        };
     }
 }
