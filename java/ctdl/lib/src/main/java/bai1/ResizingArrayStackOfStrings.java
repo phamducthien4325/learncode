@@ -24,6 +24,9 @@ public class ResizingArrayStackOfStrings {
     }
 
     public String pop() {
+        if (isEmpty()) {
+            return null;
+        }
         if (N == s.length / 4) {
             resize(s.length / 2); 
         }
