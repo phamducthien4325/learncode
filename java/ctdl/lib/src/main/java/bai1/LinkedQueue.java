@@ -21,6 +21,10 @@ public class LinkedQueue<Item> implements Iterable<Item> {
         this.tail = null;
     }
 
+    public boolean isEmpty() {
+        return head == null;
+    }
+
     public void enqueue(Item item) {
         Node newNode = new Node(item);
         if (tail == null) {
